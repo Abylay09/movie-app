@@ -4,7 +4,8 @@ const theme = {
         second : "'Lato', sans-serif"
     },
     colors : {
-        
+        main : "#00897B",
+        second : "#818181",
     }
 };
 

@@ -6,16 +6,40 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/Theme';
 import { GlobalStyle } from './styles/GlobalStyles';
+import { createRoutesFromElements, RouterProvider, Route, createBrowserRouter } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import FilmsPage from './pages/films/FilmsPage';
+import MainLayout from './layout/MainLayout';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/'>
+      <Route index element={<App />} />
+      <Route element={<MainLayout/>}>
+        <Route path='films' element={<FilmsPage />} />
+      </Route>
+    </Route>
+  )
+)
+
 root.render(
-  <React.StrictMode>
-    <GlobalStyle/>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <>
+    <GlobalStyle />
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </Provider>
+  </>
+
+
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
