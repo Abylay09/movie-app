@@ -2,19 +2,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPopularFilm } from '../../types/interfaces';
 import { getPopularMovies } from '../../utils/api/getFilms';
 
-interface IStore {
+interface IState {
     popularFilms: Array<IPopularFilm>,
     loading: 'idle' | 'pending' | 'succeeded' | 'failed',
     error: null
 }
 
-const initialState: IStore = {
+const initialState: IState = {
     popularFilms: [],
     loading: 'idle',
     error: null
 }
 
-export const filmSlice = createSlice({
+export const popularFilmSlice = createSlice({
     name: "filmSlice",
     initialState,
     reducers: {
@@ -37,4 +37,4 @@ export const filmSlice = createSlice({
     }
 })
 
-export default filmSlice.reducer;
+export default popularFilmSlice.reducer;

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from 'styled-components';
@@ -11,6 +10,9 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import FilmsPage from './pages/films/FilmsPage';
 import MainLayout from './layout/MainLayout';
+import FilmPage from './components/film/FilmPage';
+import './index.css';
+import SearchPage from './pages/search/SearchPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,6 +24,8 @@ const router = createBrowserRouter(
       <Route index element={<App />} />
       <Route element={<MainLayout/>}>
         <Route path='films' element={<FilmsPage />} />
+        <Route path='film/:id' element={<FilmPage />} />
+        <Route path='search' element={<SearchPage />} />
       </Route>
     </Route>
   )
