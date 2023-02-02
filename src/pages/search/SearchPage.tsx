@@ -84,7 +84,7 @@ function SearchPage() {
         <Container>
             <SearchWrapper>
                 <div className='search'>
-                    <SearchInput type="text" placeholder='Find your favourite movie or actor' onChange={(e) => handleInput(e.target.value)} />
+                    <SearchInput onKeyPress={(e) => e.key === "Enter" ? findData() : ""} type="text" placeholder='Find your favourite movie or actor' onChange={(e) => handleInput(e.target.value)} />
                     <SearchButton onClick={() => findData()}>Find</SearchButton>
                 </div>
 

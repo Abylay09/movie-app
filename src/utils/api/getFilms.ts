@@ -19,7 +19,7 @@ export const getPopularMovies = createAsyncThunk<any, undefined, { rejectValue: 
 
 export const getRecommendations = createAsyncThunk<any, number, { rejectValue: string }>(
     "getRecommendedFilms",
-    async (id = 2, { rejectWithValue }) => {
+    async (id = 3, { rejectWithValue }) => {
         // const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
         const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${id}`);
         

@@ -47,9 +47,19 @@ export interface IFilm {
 }
 
 export interface IActor {
+    id : number,
     name: string,
     popularity: string,
     known_for_department : string,
     profile_path : string,
-    known_for : IFilm[]
+    known_for : IFilm[] | string
+}
+
+export interface IActorInfo extends IActor {
+    biography : string,
+    birthday : string,
+    deathday : string,
+    place_of_birth : string,
+    known_for_department : string,
+    homepage : string
 }

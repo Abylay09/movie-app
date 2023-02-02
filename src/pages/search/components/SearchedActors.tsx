@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import Spinner from '../../../components/ui/Spinner';
 import { useAppSelector } from '../../../utils/hooks/hooks';
@@ -17,7 +18,7 @@ const ActorItem = styled.div`
     margin-top : 15px;
 `
 
-const ActorImage = styled.div`
+export const ActorImage = styled.div`
     height : 200px;
     width : 30%;
     img{
@@ -31,15 +32,15 @@ const ActorImage = styled.div`
 function SearchedActors() {
     const searchedActors = useAppSelector(state => state.search.searchedActor).filter(actor => actor.profile_path ? actor.profile_path : false);
     const loading = useAppSelector(state => state.search.loading);
-
+    const navigate = useNavigate();
     return (
         <div>
             {loading === "idle" ? <></>
-                : loading === "pending" ? <Spinner/>
+                : loading === "pending" ? <Spinner />
                     : loading === "succeeded" ? <ActorsWrapper>
                         {searchedActors.map((actor, index) => {
                             return (
-                                <ActorItem key={index}>
+                                <ActorItem key={index} onClick={() => navigate(`/actor/${actor.id}`)}>
                                     <ActorImage>
                                         <img src={`https://image.tmdb.org/t/p/original` + actor.profile_path} alt="" />
                                     </ActorImage>
@@ -48,7 +49,6 @@ function SearchedActors() {
                                         <p>{actor.known_for_department}</p>
                                         <p>{actor.popularity}</p>
                                     </div>
-
                                 </ActorItem>
 
                             )

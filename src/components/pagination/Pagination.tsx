@@ -1,73 +1,58 @@
-import React, { useState } from 'react'
-import styled from 'styled-components';
-import { getRecommendations } from '../../utils/api/getFilms';
-import { useAppDispatch } from '../../utils/hooks/hooks';
+import React, { useEffect, useState } from 'react'
+import { showListFilms } from '../../store/films/actorSlice';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks/hooks';
 
-const PageNumber = styled.span`
-    background-color : #ffffff;
-    padding : 3px 5px;
-    border-radius : 10px;
-    color : black;
-    min-width : 15px;
-    text-align:center;
-`
+interface PaginationProps {
+    firstFilmIndex: number,
+    lastFilmIndex: number,
+    setcurrentPage: (page: number) => void,
+    totalPages : number,
+    itemsPerPage : number
+}
 
+const Pagination: React.FC<PaginationProps> = ({ firstFilmIndex, lastFilmIndex, setcurrentPage, totalPages, itemsPerPage }) => {
+    // const { films } = useAppSelector(store => store.actor);
+    const dispatch = useAppDispatch();
+    // const [totalPages, setTotalPages] = useState(0);
+    // const [currentPage, setcurrentPage] = useState(1);
+    // const [itemsPerPage, setitemsPerPage] = useState(5);
 
-export default function Pagination() {
-    let pages: number[] = [1, 2, 3, 4, 5];
-    const dispatch = useAppDispatch()
+    // useEffect(() => {
+    //     setTotalPages(films.length)
+    // }, [])
 
-    function togglePage(e: any) {
-        let listOFNumber = Array.from(document.getElementsByClassName("page-number") as HTMLCollectionOf<HTMLElement>);
-        listOFNumber.forEach(item => item.style.backgroundColor = "#ffffff")
-        e.target.style.backgroundColor = "red"
+    // const lastFilmIndex = currentPage * itemsPerPage;
+    // const firstFilmIndex = lastFilmIndex - itemsPerPage;
+
+    const pages = [];
+
+    // for (let i = 1; i <= 3; i++) {
+    //     pages.push(i);
+    // }
+    for (let i = 1; i <= Math.ceil(totalPages / itemsPerPage); i++) {
+        pages.push(i);
     }
+
+
+    // const handleClick = (event: any) => {
+    //     setcurrentPage(Number(event.target.id));
+    // };
+
+
     return (
         <div>
-            {pages.map((_, index) => <PageNumber className='page-number' onClick={(e) => {
-                togglePage(e)
-                dispatch(getRecommendations(index + 3))
-            }}>{index + 1}</PageNumber>)}
-        </div>
+            {pages.map((page) => <span onClick={() => {
+
+                // dispatch(showListFilms({
+                //     firstFilmIndex: firstFilmIndex,
+                //     lastFilmIndex: lastFilmIndex
+                // }))
+                setcurrentPage(page)
+            }
+            }>{page}</span>)
+            }
+        </div >
     )
 }
 
-// import { IRecommendedFilm } from "../../types/interfaces";
-
-// const PaginationWrapper = styled.div`
-//     display : flex;
-// `
-
-// interface PageNumberProps {
-//     isActive: boolean;
-// }
-
-// const PageNumber = styled.span<{ isActive: boolean; }>`
-//     background-color : ${props => props.isActive ? "#68B0AB" : "#ffffff"};
-//     padding : 3px 5px;
-//     border-radius : 10px;
-//     color : black;
-//     min-width : 15px;
-//     text-align:center;
-// `
-
-// interface PaginationProps {
-//     recommendations: Array<IRecommendedFilm>
-// }
-
-// function Pagination({ recommendations }: PaginationProps) {
-//     const [page, setPage] = useState(1);
-//     const [isActive, setIsActive] = useState<boolean>(false);
-
-//     const handleClick = (e: any) => {
-//         e.target.classList.toggle("add")
-//     };
-
-//     return (
-//         <PaginationWrapper>
-//             {recommendations.map((_, index) => <PageNumber isActive={isActive} onClick={(e) => handleClick(e)}>{index + 1}</PageNumber>)}
-//         </PaginationWrapper>
-//     )
-// }
-
-// export default Pagination
+export default Pagination

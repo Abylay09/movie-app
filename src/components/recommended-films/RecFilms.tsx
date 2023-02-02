@@ -16,9 +16,6 @@ export const RecFilmsWrapper = styled.section`
 
 export const FilmItem = styled.div`
     border : 1px solid rgba(255,255,255,0.6);
-    // display : flex;
-    // flex-direction : column;
-    // padding-bottom : 20px;
 `
 
 export const FilmHeader = styled.div`
@@ -27,7 +24,6 @@ export const FilmHeader = styled.div`
 
 export const FilmBody = styled.div`
     padding : 0 8px 20px;
-    // margin : 15px 0;
 `
 export const FilmTitle = styled.p`
     font-size : 20px;
@@ -52,7 +48,7 @@ function RecFilms() {
     const recommendations = useAppSelector(state => state.recs.recommendations);
     const navigate = useNavigate();
     useEffect(() => {
-        dispatch(getRecommendations(3))
+        dispatch(getRecommendations(4))
     }, [])
 
     if (loading === "pending") {
@@ -80,8 +76,6 @@ function RecFilms() {
                     )
                 })}
             </RecFilmsWrapper>
-            <Pagination  />
-
         </>
 
     )

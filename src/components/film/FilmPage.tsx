@@ -26,13 +26,13 @@ const FilmImage = styled.div`
         object-fit : cover;
     }
 `
-const FilmInfo = styled.div`
+ const FilmInfo = styled.div`
     display : flex;
     flex-direction : column;
     align-items:center;
     flex-grow : 0;
 `
-const FilmData = styled.div`
+export const FilmData = styled.div`
     display : flex;
     justify-content : space-between;
     margin-bottom : 18px;

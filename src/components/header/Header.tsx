@@ -46,8 +46,6 @@ const Menu = styled.nav`
         }
     }
 `
-
-
 function Header() {
     const navigate = useNavigate();
     return (
