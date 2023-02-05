@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ArticleText, Container, SectionTitle, Text } from '../../styles/GlobalStyles'
 import { getFilmDetails } from '../../utils/api/getFilms';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/hooks'
+import Spinner from '../ui/Spinner';
 
 const FilmTitle = styled(SectionTitle)`
     margin : 0 0 15px 0;
@@ -59,7 +60,7 @@ function FilmPage() {
 
     return (
         <>
-            {loading == "pending" ? <div>Loading...</div>
+            {loading == "pending" ? <Spinner/>
                 : loading == "succeeded" ? < Container >
                     <FilmWrapper>
                         <FilmImage>

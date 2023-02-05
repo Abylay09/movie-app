@@ -1,57 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import { showListFilms } from '../../store/films/actorSlice';
+import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/hooks';
 
 interface PaginationProps {
-    firstFilmIndex: number,
-    lastFilmIndex: number,
     setcurrentPage: (page: number) => void,
-    totalPages : number,
-    itemsPerPage : number
+    totalPages: number,
+    itemsPerPage: number,
+    currentPage : number
 }
 
-const Pagination: React.FC<PaginationProps> = ({ firstFilmIndex, lastFilmIndex, setcurrentPage, totalPages, itemsPerPage }) => {
-    // const { films } = useAppSelector(store => store.actor);
+
+const PaginationWrapper = styled.div`
+    display : flex;
+    justify-content:center;
+    gap : 12px;
+    margin-top : 25px;
+`
+
+const Number = styled.span<{ selected: boolean }>`
+  background : ${props => props.selected ? "#68B0AB" : "#ffffff"} ;
+  padding : 2px;
+  color : black;
+  border-radius : 20px;
+  width : 25px;
+  height : 25px;
+  line-height : 23px;
+  cursor : pointer;
+  text-align : center;
+`
+
+
+const Pagination: React.FC<PaginationProps> = ({ setcurrentPage, totalPages, itemsPerPage, currentPage}) => {
     const dispatch = useAppDispatch();
-    // const [totalPages, setTotalPages] = useState(0);
-    // const [currentPage, setcurrentPage] = useState(1);
-    // const [itemsPerPage, setitemsPerPage] = useState(5);
-
-    // useEffect(() => {
-    //     setTotalPages(films.length)
-    // }, [])
-
-    // const lastFilmIndex = currentPage * itemsPerPage;
-    // const firstFilmIndex = lastFilmIndex - itemsPerPage;
-
     const pages = [];
-
-    // for (let i = 1; i <= 3; i++) {
-    //     pages.push(i);
-    // }
     for (let i = 1; i <= Math.ceil(totalPages / itemsPerPage); i++) {
         pages.push(i);
     }
 
-
-    // const handleClick = (event: any) => {
-    //     setcurrentPage(Number(event.target.id));
-    // };
-
-
     return (
-        <div>
-            {pages.map((page) => <span onClick={() => {
+        <PaginationWrapper>
 
-                // dispatch(showListFilms({
-                //     firstFilmIndex: firstFilmIndex,
-                //     lastFilmIndex: lastFilmIndex
-                // }))
-                setcurrentPage(page)
-            }
-            }>{page}</span>)
-            }
-        </div >
+            {pages.map((page, index) => <Number selected = {page === currentPage ? true : false}   key={index} onClick={() => setcurrentPage(page)}>{page}</Number>)}
+        </PaginationWrapper >
     )
 }
 

@@ -10,6 +10,7 @@ import 'swiper/swiper.min.css'
 import 'swiper/modules/navigation/navigation.min.css';
 import 'swiper/modules/pagination/pagination.min.css'
 import { useNavigate } from 'react-router';
+import Spinner from '../ui/Spinner';
 
 
 const SliderImg = styled.div`
@@ -37,7 +38,7 @@ function Slider() {
     }, [])
 
     if (loading == "pending") {
-        return <div>Loading</div>
+        return <Spinner/>
     }
 
     return (

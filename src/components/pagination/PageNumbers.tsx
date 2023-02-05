@@ -1,9 +1,20 @@
 import React from 'react'
+import styled from 'styled-components'
 
-function PageNumbers() {
+const Number = styled.span`
+  background : #ffffff;
+  padding : 2px;
+`
+
+interface PageNumbersProps {
+  num: number,
+  setcurrentPage: (page: number) => void
+}
+
+const PageNumber: React.FC<PageNumbersProps> = ({ num, setcurrentPage }) => {
   return (
-    <div>PageNumbers</div>
+    <Number >{num}</Number>
   )
 }
 
-export default PageNumbers
+export default PageNumber

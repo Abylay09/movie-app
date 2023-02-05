@@ -4,7 +4,7 @@ import { getActorFilms, getActorInfo } from "../../utils/api/getActor";
 
 interface IStore {
     actor: IActorInfo,
-    films: IFilm[],
+    // films: IFilm[],
     loading: 'idle' | 'pending' | 'succeeded' | 'failed',
     loadingFilms: 'idle' | 'pending' | 'succeeded' | 'failed',
     error: string
@@ -12,7 +12,7 @@ interface IStore {
 
 const initialState: IStore = {
     actor: {} as IActorInfo,
-    films: [],
+    // films: [],
     loading: 'idle',
     loadingFilms: "idle",
     error: ""
@@ -21,14 +21,7 @@ const initialState: IStore = {
 export const actorSlice = createSlice({
     name: "actorSlice",
     initialState,
-    reducers: {
-        showListFilms: (state, action) => {
-            const arr = state.films.slice(action.payload.firstFilmIndex, action.payload.lastFilmIndex)
-            state.films = [...arr]
-            console.log(action.payload);
-            
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getActorInfo.fulfilled, (state, action) => {
@@ -44,8 +37,8 @@ export const actorSlice = createSlice({
             })
 
             .addCase(getActorFilms.fulfilled, (state, action) => {
-                state.loading = "succeeded",
-                    state.films = [...action.payload.cast]
+                state.loading = "succeeded"
+                    // state.films = [...action.payload.cast]
             })
             .addCase(getActorFilms.pending, (state) => {
                 state.loading = "pending"
@@ -57,6 +50,6 @@ export const actorSlice = createSlice({
     }
 })
 
-export const { showListFilms } = actorSlice.actions
+export const { } = actorSlice.actions
 
 export default actorSlice.reducer;
