@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { IFilm } from '../../types/interfaces';
 import { getActorFilms } from '../../utils/api/getActor';
@@ -16,12 +17,13 @@ interface FilmsCreditsProps {
 }
 
 const FilmsCredits: React.FC<FilmsCreditsProps> = ({ id }) => {
+    const navigate = useNavigate()
     const dispatch = useAppDispatch();
     const { loading } = useAppSelector(store => store.actor)
 
     const [filmsData, setFilmsData] = useState<IFilm[]>([]);
     const [currentPage, setcurrentPage] = useState(1);
-    const [itemsPerPage, setitemsPerPage] = useState(5);
+    const [itemsPerPage, setitemsPerPage] = useState(6);
 
     useEffect(() => {
         dispatch(getActorFilms(id)).unwrap()
@@ -35,16 +37,17 @@ const FilmsCredits: React.FC<FilmsCreditsProps> = ({ id }) => {
     return (
         loading === "pending" ? <Spinner /> :
             loading === "succeeded" ? <>
+                <h2>Participation in projects</h2>
                 <ActorFilmsWrapper>
                     {currentFilms.map(film =>
-                        <FilmItem>
+                        <FilmItem onClick={() => navigate(`/film/${film.id}`)}>
                             <FilmHeader>
                                 {
-                                    film.backdrop_path 
-                                    ? <FilmImage src={"https://image.tmdb.org/t/p/w500" + film.backdrop_path} alt={film.title} />
-                                    : <div style={{height : "65%"}}></div>
+                                    film.backdrop_path
+                                        ? <FilmImage src={"https://image.tmdb.org/t/p/w500" + film.backdrop_path} alt={film.title} />
+                                        : <div style={{ height: "65%" }}></div>
                                 }
-                                
+
                             </FilmHeader>
                             <FilmBody>
                                 <FilmTitle>{film.title}</FilmTitle>
@@ -57,7 +60,7 @@ const FilmsCredits: React.FC<FilmsCreditsProps> = ({ id }) => {
                         </FilmItem>)}
                 </ActorFilmsWrapper>
 
-                <Pagination currentPage = {currentPage} itemsPerPage={itemsPerPage} totalPages={filmsData.length} setcurrentPage={setcurrentPage} />
+                <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} totalPages={filmsData.length} setcurrentPage={setcurrentPage} />
             </>
                 : <div>Failed</div>
 

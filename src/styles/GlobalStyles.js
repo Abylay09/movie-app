@@ -13,11 +13,14 @@ export const GlobalStyle = createGlobalStyle`
 export const Container = styled.div`
     max-width : 1200px;
     width : 100%;
-    // height : 100%;
     margin : 0 auto;
     font-family : ${props => props.theme.fontFamily.main};
     position : relative;
-    // overflow-x : hidden;
+    // @media( max-width : ${props => props.theme.breakpoints.lg}){
+    //   // padding : 0 12px;
+    //   width : 90%;
+    // }
+
 `
 export const Title = styled.h1`
   font-family : ${props => props.theme.fontFamily.main};

@@ -9,6 +9,12 @@ const ActorsWrapper = styled.div`
     flex-wrap : wrap;
     gap : 5%;
     margin-top : 50px;
+    @media (max-width : ${props => props.theme.breakpoints.sm}){
+        justify-content : space-between;
+        gap : 15px;
+        flex-direction : column;
+    }
+    
 `
 const ActorItem = styled.div`
     display : flex;
@@ -16,6 +22,25 @@ const ActorItem = styled.div`
     gap : 30px;
     border : 1px solid #ffffff;
     margin-top : 15px;
+
+    
+    @media (max-width : ${props => props.theme.breakpoints.sm}){
+        margin-top : 0;
+        width : 100%;
+        gap : 60px;
+        .actor-info{
+            display : flex;
+            flex-direction : column;
+            justify-content:space-around;
+            h1{
+                font-size : 24px;
+            }
+        }
+        .actor-subtitle{
+            display : flex;
+            justify-content:space-between;
+        }
+    }
 `
 
 export const ActorImage = styled.div`
@@ -26,6 +51,9 @@ export const ActorImage = styled.div`
         max-width : 100%;
         height : 100%;
         object-fit : cover;
+    }
+    @media (max-width : ${props => props.theme.breakpoints.sm}){
+        // width : 100%;
     }
 `
 
@@ -44,13 +72,15 @@ function SearchedActors() {
                                     <ActorImage>
                                         <img src={`https://image.tmdb.org/t/p/original` + actor.profile_path} alt="" />
                                     </ActorImage>
-                                    <div>
+                                    <div className='actor-info'>
                                         <h1>{actor.name}</h1>
-                                        <p>{actor.known_for_department}</p>
-                                        <p>{actor.popularity}</p>
+                                        <div className='actor-subtitle'>
+                                            <p>{actor.known_for_department}</p>
+                                            <p>{actor.popularity}</p>
+                                        </div>
+
                                     </div>
                                 </ActorItem>
-
                             )
                         })}
                     </ActorsWrapper>

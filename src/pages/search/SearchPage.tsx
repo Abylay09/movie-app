@@ -19,6 +19,11 @@ const SearchWrapper = styled.div`
         gap: 20px;
         width : 100%;
     }
+    @media (max-width : ${props => props.theme.breakpoints.md}){
+        width : 100%;
+        flex-direction : column;
+        align-items : center;
+    }
 `
 
 const SearchInput = styled.input`
@@ -40,6 +45,7 @@ const SearchButton = styled.button`
     border : none;
     background : #68B0AB;
     flex-basis : 125px;
+    min-width : 100px;
     font-size : 21px;
     font-weight : 500;
     border-radius : 14px;
@@ -54,6 +60,7 @@ const SearchButton = styled.button`
 
 const SelectType = styled.select`
     width : 100px;
+    height : 40px;
     font-size : 18px;
     outline : none;
     padding : 0 6px;

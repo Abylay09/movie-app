@@ -8,13 +8,15 @@ const FooterWrapper = styled.footer`
     height : 50px;
     background-color : #696D7D;
     color : #ffffff;
+    text-align : center;
+    line-height : 50px;
 `
 
 function Footer() {
     return (
         <FooterWrapper>
             <Container>
-                Footer
+                Created by Abylay
             </Container>
         </FooterWrapper>
     )

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../utils/hooks/hooks';
+
 
 interface PaginationProps {
     setcurrentPage: (page: number) => void,
     totalPages: number,
     itemsPerPage: number,
-    currentPage : number
+    currentPage: number
 }
 
 
@@ -15,6 +15,10 @@ const PaginationWrapper = styled.div`
     justify-content:center;
     gap : 12px;
     margin-top : 25px;
+    flex-wrap : wrap;
+    @media (max-width : ${props => props.theme.breakpoints.md}){
+       
+    }
 `
 
 const Number = styled.span<{ selected: boolean }>`
@@ -30,8 +34,7 @@ const Number = styled.span<{ selected: boolean }>`
 `
 
 
-const Pagination: React.FC<PaginationProps> = ({ setcurrentPage, totalPages, itemsPerPage, currentPage}) => {
-    const dispatch = useAppDispatch();
+const Pagination: React.FC<PaginationProps> = ({ setcurrentPage, totalPages, itemsPerPage, currentPage }) => {
     const pages = [];
     for (let i = 1; i <= Math.ceil(totalPages / itemsPerPage); i++) {
         pages.push(i);
@@ -39,8 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({ setcurrentPage, totalPages, ite
 
     return (
         <PaginationWrapper>
-
-            {pages.map((page, index) => <Number selected = {page === currentPage ? true : false}   key={index} onClick={() => setcurrentPage(page)}>{page}</Number>)}
+            {pages.map((page, index) => <Number selected={page === currentPage ? true : false} key={index} onClick={() => setcurrentPage(page)}>{page}</Number>)}
         </PaginationWrapper >
     )
 }

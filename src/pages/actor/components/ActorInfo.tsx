@@ -17,14 +17,18 @@ const ActorWrapper = styled.div`
     flex-direction : column;
     align-items : center;
     width : inherit;
+
+    
 `
 
 const ActorDataWrapper = styled.div`
     display : flex;
-    // justify-content : space-between;
     gap : 10%;
     width : 100%;
     margin-top : 50px;
+    @media (max-width : ${props => props.theme.breakpoints.md}){
+        flex-direction : column;
+    }
 `
 
 const ActorFacts = styled.div`
@@ -38,6 +42,12 @@ const ActorFacts = styled.div`
         width : 2px;
         height : 90%;
         background : ${props => props.theme.colors.extra};
+    }
+
+    @media (max-width : ${props => props.theme.breakpoints.md}){
+        &::after{
+            display : none;
+        }
     }
 `
 
@@ -102,7 +112,7 @@ function ActorInfo() {
                                     </ActorData>
                                 </ActorFacts>
                                 <BiographyText>
-                                    <h3>Biography</h3>
+                                    <h2>Biography</h2>
                                     {actor.biography}
                                 </BiographyText>
                             </ActorDataWrapper>

@@ -7,12 +7,19 @@ const HeaderWrapper = styled.header`
     justify-content : space-between;
     font-family : ${props => props.theme.fontFamily.main};
     padding : 10px 65px;
+
+    @media (max-width : ${props => props.theme.breakpoints.sm}){
+        padding : 10px 13px;
+    }
 `
 const HeaderTitle = styled.p`
     font-size : 36px;
     margin : 0;
     span{
         color : #68B0AB;
+    }
+    &:hover{
+        cursor : pointer;
     }
 `
 
@@ -50,7 +57,7 @@ function Header() {
     const navigate = useNavigate();
     return (
         <HeaderWrapper>
-            <HeaderTitle>Kino<span>KZ</span></HeaderTitle>
+            <HeaderTitle onClick={() => navigate("/films")}>Kino<span>KZ</span></HeaderTitle>
             <Menu>
                 <ul>
                     <li onClick={() => navigate("search")}>Search</li>

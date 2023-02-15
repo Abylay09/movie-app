@@ -9,13 +9,16 @@ const LayoutWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    .main-content{
+        padding : 0 12px;
+    }
 `
 
 const MainLayout: React.FC = () => {
     return (
         <LayoutWrapper>
             <Header />
-            <div style={{ flexGrow: 1 }}>
+            <div className='main-content' style={{ flexGrow: 1 }}>
                 <Outlet />
             </div>
             <Footer />

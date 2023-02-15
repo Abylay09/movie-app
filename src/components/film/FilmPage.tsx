@@ -15,6 +15,9 @@ const FilmWrapper = styled.section`
     justify-content : space-between;
     align-items : flex-start;
     gap : 50px;
+    @media(max-width : ${props => props.theme.breakpoints.lg}){
+        flex-direction : column;
+    }
 `
 
 const FilmImage = styled.div`
@@ -25,6 +28,9 @@ const FilmImage = styled.div`
         width : 100%;
         height : auto;
         object-fit : cover;
+    }
+    @media(max-width : ${props => props.theme.breakpoints.lg}){
+        min-width : 100%;
     }
 `
  const FilmInfo = styled.div`

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { getPopularMovies } from '../../utils/api/getFilms';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks/hooks';
 import { Pagination, Navigation } from "swiper";
-import {SectionTitle } from '../../styles/GlobalStyles'
+import { SectionTitle } from '../../styles/GlobalStyles'
 
 import 'swiper/swiper.min.css'
 import 'swiper/modules/navigation/navigation.min.css';
@@ -38,7 +38,7 @@ function Slider() {
     }, [])
 
     if (loading == "pending") {
-        return <Spinner/>
+        return <Spinner />
     }
 
     return (
@@ -52,8 +52,19 @@ function Slider() {
                 navigation={true}
                 spaceBetween={50}
                 slidesPerView={2}
+
+                breakpoints={{
+                    320: {
+                        // width: 576,
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        // width: 768,
+                        slidesPerView: 2,
+                    },
+                }}
             >
-                {popularFilms.map(film => <SwiperSlide key={film.id} onClick = {() => navigate(`/film/${film.id}`)}>
+                {popularFilms.map(film => <SwiperSlide key={film.id} onClick={() => navigate(`/film/${film.id}`)}>
                     <SliderImg>
                         <img src={"https://image.tmdb.org/t/p/original" + film.backdrop_path} alt="" />
                         <SliderTitle>{film.title}</SliderTitle>

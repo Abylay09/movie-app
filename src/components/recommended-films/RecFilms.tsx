@@ -48,7 +48,7 @@ function RecFilms() {
     const recommendations = useAppSelector(state => state.recs.recommendations);
     const navigate = useNavigate();
     useEffect(() => {
-        dispatch(getRecommendations(4))
+        dispatch(getRecommendations(2))
     }, [])
 
     if (loading === "pending") {
